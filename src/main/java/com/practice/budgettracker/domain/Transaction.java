@@ -1,12 +1,23 @@
 package com.practice.budgettracker.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import java.math.BigDecimal;
+import java.util.Date;
+
+@Entity
 public class Transaction {
     private Long id;
     private Date date;
     private BigDecimal total;
     private String type;
     private String note;
+    private Category category;
 
+    @Id
+    @GeneratedValue
     public Long getId() {
         return id;
     }
@@ -47,4 +58,12 @@ public class Transaction {
         this.note = note;
     }
 
+    @ManyToOne
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 }

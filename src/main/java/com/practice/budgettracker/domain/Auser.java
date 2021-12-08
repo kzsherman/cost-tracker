@@ -1,10 +1,18 @@
 package com.practice.budgettracker.domain;
 
+import javax.persistence.*;
+import java.util.Set;
+import java.util.TreeSet;
+
+@Entity
 public class Auser {
     private Long id;
     private String username;
     private String password;
+    private Set<Section> sections = new TreeSet<>();
 
+    @Id
+    @GeneratedValue
     public Long getId() {
         return id;
     }
@@ -27,5 +35,14 @@ public class Auser {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @OneToMany(cascade= CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="user")
+    public Set<Section> getSections() {
+        return sections;
+    }
+
+    public void setSections(Set<Section> sections) {
+        this.sections = sections;
     }
 }
