@@ -11,6 +11,7 @@ public class Auser {
     private String username;
     private String password;
     private Set<Budget> budgets = new TreeSet<>();
+    private Set<Authority> authorities = new HashSet<>();
 
     @Id
     @GeneratedValue
@@ -45,5 +46,14 @@ public class Auser {
 
     public void setBudgets(Set<Budget> budgets) {
         this.budgets = budgets;
+    }
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
+    public Set<Authority> getAuthorities() {
+        return authorities;
+    }
+
+    public void setAuthorities(Set<Authority> authorities) {
+        this.authorities = authorities;
     }
 }
