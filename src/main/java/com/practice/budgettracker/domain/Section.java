@@ -8,7 +8,7 @@ import java.util.TreeSet;
 public class Section {
     private Long id;
     private String name;
-    private Auser user;
+    private Budget budget;
     private Set<Category> categories = new TreeSet<>();
 
     @Id
@@ -30,12 +30,12 @@ public class Section {
     }
 
     @ManyToOne
-    public Auser getUser() {
-        return user;
+    public Budget getBudget() {
+        return budget;
     }
 
-    public void setUser(Auser user) {
-        this.user = user;
+    public void setBudget(Budget budget) {
+        this.budget = budget;
     }
 
     @OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.LAZY, mappedBy="section")

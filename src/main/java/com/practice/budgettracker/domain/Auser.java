@@ -1,6 +1,7 @@
 package com.practice.budgettracker.domain;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -9,7 +10,7 @@ public class Auser {
     private Long id;
     private String username;
     private String password;
-    private Set<Section> sections = new TreeSet<>();
+    private Set<Budget> budgets = new TreeSet<>();
 
     @Id
     @GeneratedValue
@@ -37,12 +38,12 @@ public class Auser {
         this.password = password;
     }
 
-    @OneToMany(cascade= CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="user")
-    public Set<Section> getSections() {
-        return sections;
+    @ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="users")
+    public Set<Budget> getBudgets() {
+        return budgets;
     }
 
-    public void setSections(Set<Section> sections) {
-        this.sections = sections;
+    public void setBudgets(Set<Budget> budgets) {
+        this.budgets = budgets;
     }
 }
